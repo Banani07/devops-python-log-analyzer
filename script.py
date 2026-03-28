@@ -15,7 +15,10 @@ try:
             elif "WARNING" in line:
                 warning_count += 1
 
-    error_percentage = (error_count / total_lines) * 100
+    if total_lines > 0:
+    	error_percentage = (error_count / total_lines) * 100
+    else:
+    	error_percentage = 0
 
     print("Total lines:", total_lines)
     print("ERROR:", error_count)
