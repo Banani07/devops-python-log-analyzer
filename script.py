@@ -1,30 +1,35 @@
 try:
-    with open("log.txt", "r") as file:
-        error_count = 0
-        info_count = 0
-        warning_count = 0
-        total_lines = 0
+    log_counts = {
+        "error": 0,
+        "info": 0,
+        "warning": 0
+    }
 
+    total_lines = 0
+
+    with open("log.txt", "r") as file:
         for line in file:
             total_lines += 1
+            line = line.lower()
 
-            if "ERROR" in line:
-                error_count += 1
-            elif "INFO" in line:
-                info_count += 1
-            elif "WARNING" in line:
-                warning_count += 1
+            for key in log_counts:
+                if key in line:
+                    log_counts[key] += 1
 
-    if total_lines > 0:
-    	error_percentage = (error_count / total_lines) * 100
+    if total_lines == 0:
+        print("Log file is empty.")
     else:
-    	error_percentage = 0
+        error_percentage = (log_counts["error"] / total_lines) * 100
+        print("\n--- Log Summary ---")
+        for key, value in log_counts.items():
+            print(f"{key.upper()}: {value}")
 
-    print("Total lines:", total_lines)
-    print("ERROR:", error_count)
-    print("INFO:", info_count)
-    print("WARNING:", warning_count)
-    print("Error %:", round(error_percentage, 2))
+        print("Total lines:", total_lines)
+        print("Error %:", round(error_percentage, 2))
+
+        if log_counts["error"] > 5:
+            print("ALERT: High error rate detected!")
+    
 
 except FileNotFoundError:
-    print("Log file not found. Please check the file path.")
+    print("Log file not found.")
