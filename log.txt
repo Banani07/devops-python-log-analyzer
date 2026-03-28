@@ -1,5 +1,7 @@
 INFO: Server started
 ERROR: Database connection failed
+WARNING: Disk space low
 INFO: User logged in
 ERROR: Timeout occurred
+WARNING: Memory usage high
 INFO: Health check passed
