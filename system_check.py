@@ -32,3 +32,4 @@ except Exception as e:
         f.write(str(e) + "\n")
         f.write(traceback.format_exc())
 
+print("Auto trigger test")
