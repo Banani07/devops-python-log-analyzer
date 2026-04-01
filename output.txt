@@ -1,0 +1,19 @@
+Caption  FreeSpace     Size          
+
+C:       71508418560   269796503552  
+
+D:       155282882560  220200955904  
+
+
+
+
+Pinging google.com [142.250.207.174] with 32 bytes of data:
+Reply from 142.250.207.174: bytes=32 time=29ms TTL=118
+Reply from 142.250.207.174: bytes=32 time=32ms TTL=118
+Reply from 142.250.207.174: bytes=32 time=30ms TTL=118
+Reply from 142.250.207.174: bytes=32 time=38ms TTL=118
+
+Ping statistics for 142.250.207.174:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 29ms, Maximum = 38ms, Average = 32ms
