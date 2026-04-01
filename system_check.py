@@ -1,32 +1,35 @@
 import subprocess
+import os
+import traceback
 
-print("=== SYSTEM MONITOR ===\n")
+try:
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# 🔹 1. Disk Check (Windows)
-disk = subprocess.run(
-    "wmic logicaldisk get size,freespace,caption",
-    capture_output=True,
-    text=True,
-    shell=True
-)
+    print("Script started")
 
-print("💾 Disk Info:\n")
-print(disk.stdout)
+    # Disk Check
+    disk = subprocess.run(
+        "wmic logicaldisk get size,freespace,caption",
+        capture_output=True,
+        text=True,
+        shell=True
+    )
 
-# 🔹 2. Network Check
-ping = subprocess.run(
-    ["ping", "google.com"],
-    capture_output=True,
-    text=True
-)
+    # Network Check
+    ping = subprocess.run(
+        ["ping", "-n", "4", "google.com"],
+        capture_output=True,
+        text=True
+    )
 
-print("\n🌐 Network Status:\n")
-print(ping.stdout)
+    # Save Output
+    with open("output.txt", "w") as f:
+        f.write(disk.stdout)
+        f.write(ping.stdout)
 
-# 🔹 3. Alert Logic
-if "TTL=" not in ping.stdout:
-    print("\n🚨 ALERT: Network issue detected!")
-else:
-    print("\n✅ Network is working fine")
-print(type(disk))
-print("System check completed")
+except Exception as e:
+    with open("error_log.txt", "w") as f:
+        f.write(str(e) + "\n")
+        f.write(traceback.format_exc())
+
+print("Auto trigger test")
